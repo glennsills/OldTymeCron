@@ -1,14 +1,14 @@
 using Microsoft.Extensions.Options;
 using OldTymeCron.CronJob.Config;
 
-namespace OldTymeCron.CronJob.Jobs
+namespace OldTymeCron.CronJob.Worker
 {
-    public class Worker1 : BaseCronJob
+    public class Worker1 : BaseCronWorker
     {
         private readonly IOptions<Worker1Config> _configuration;
 
         public Worker1(
-            ILogger<BaseCronJob> logger,
+            ILogger<BaseCronWorker> logger,
             IOptions<Worker1Config> configuration
         ) :
             base(nameof(Worker1), logger, configuration.Value.Schedule)

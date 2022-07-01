@@ -1,9 +1,11 @@
 ﻿namespace OldTymeCron.CronJob.Config;
 
-public class Worker1Config
+/// <summary>
+/// Illustrates add a new property to a configuration 
+/// for Worker 1
+/// </summary>
+public class Worker1Config : BaseWorkerConfig
 {
-    public string Name { get; set; } = string.Empty;
-    public string Schedule { get; set; } = string.Empty;
     public Uri[] NotificationRecipients { get; set; } = new Uri[0];
 }
 

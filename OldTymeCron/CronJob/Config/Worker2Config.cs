@@ -1,9 +1,12 @@
 ﻿namespace OldTymeCron.CronJob.Config;
 
-public class Worker2Config
+/// <summary>
+/// If a worker only needs the basic scheduling and
+/// reporting properties, it still needs to inherit
+/// a new class so that it can be bound from the 
+/// appsettings[env].json file.
+/// </summary>
+public class Worker2Config : BaseWorkerConfig
 {
-    public string Name { get; set; } = string.Empty;
-    public string Schedule { get; set; } = string.Empty;
-    public Uri[] NotificationRecipients { get; set; } = new Uri[0];
 }
 

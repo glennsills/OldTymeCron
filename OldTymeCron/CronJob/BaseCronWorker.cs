@@ -5,13 +5,13 @@ using Cronos;
 
 namespace OldTymeCron.CronJob;
 
-public abstract class BaseCronJob : BackgroundService
+public abstract class BaseCronWorker : BackgroundService
 {
-    protected readonly ILogger<BaseCronJob> _logger;
+    protected readonly ILogger<BaseCronWorker> _logger;
     protected readonly string _schedule;
     protected readonly string _name;
 
-    public BaseCronJob(string name, ILogger<BaseCronJob> logger, string schedule)
+    public BaseCronWorker(string name, ILogger<BaseCronWorker> logger, string schedule)
         {
             ArgumentNullException.ThrowIfNull(name);
             ArgumentNullException.ThrowIfNull(logger);
@@ -45,7 +45,7 @@ public abstract class BaseCronJob : BackgroundService
                 Thread.Sleep(1000);
                 delay = nextOccurance - DateTime.UtcNow;
             }
-            _logger.LogInformation($"delay for {_name} is {delay.TotalSeconds}");
+
             using var timer = new PeriodicTimer(delay);
 
             if (await timer.WaitForNextTickAsync(stoppingToken))

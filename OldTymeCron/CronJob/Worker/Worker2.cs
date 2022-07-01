@@ -1,17 +1,17 @@
 using Microsoft.Extensions.Options;
 using OldTymeCron.CronJob.Config;
 
-namespace OldTymeCron.CronJob.Jobs
+namespace OldTymeCron.CronJob.Worker
 {
-    public class Worker2 : BaseCronJob
+    public class Worker2 : BaseCronWorker
     {
         private readonly IOptions<Worker2Config> _configuration;
 
         public Worker2(
-            ILogger<BaseCronJob> logger,
+            ILogger<BaseCronWorker> logger,
             IOptions<Worker2Config> configuration
         ) :
-            base(nameof(Worker2), logger, configuration.Value.Schedule)
+            base(configuration.Value.Name, logger, configuration.Value.Schedule)
         {
             ArgumentNullException.ThrowIfNull (logger);
 

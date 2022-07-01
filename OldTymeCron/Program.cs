@@ -1,5 +1,5 @@
-using OldTymeCron.CronJob.Jobs;
 using OldTymeCron.CronJob.Config;
+using OldTymeCron.CronJob.Worker;
 
 IHost host = Host.CreateDefaultBuilder(args)
     .ConfigureServices((hostcontext,services) =>
