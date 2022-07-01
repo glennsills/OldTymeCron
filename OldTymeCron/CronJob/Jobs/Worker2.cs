@@ -1,16 +1,21 @@
 using Microsoft.Extensions.Options;
 using OldTymeCron.CronJob.Config;
 
-namespace OldTymeCron.CronJob
+namespace OldTymeCron.CronJob.Jobs
 {
     public class Worker2 : BaseCronJob
     {
+        private readonly IOptions<Worker2Config> _configuration;
+
         public Worker2(
             ILogger<BaseCronJob> logger,
-            IOptions<ApplicationConfig> configuration
+            IOptions<Worker2Config> configuration
         ) :
-            base(nameof(Worker2), logger, configuration)
+            base(nameof(Worker2), logger, configuration.Value.Schedule)
         {
+            ArgumentNullException.ThrowIfNull (logger);
+
+            _configuration = configuration;
         }
 
         protected override Task<bool> DoWork(CancellationToken stoppingToken)
