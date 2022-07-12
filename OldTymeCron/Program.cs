@@ -6,14 +6,13 @@ IHost host = Host.CreateDefaultBuilder(args)
     {
         var configurationRoot = hostcontext.Configuration;
 
-        services.Configure<Worker1Config>(
-            configurationRoot.GetSection(nameof(Worker1Config)));
+        services.Configure<TopNewsJobConfig>(
+            configurationRoot.GetSection(nameof(TopNewsJobConfig)));
 
-        services.Configure<Worker2Config>(
-            configurationRoot.GetSection(nameof(Worker2Config)));
+        services.Configure<TopNewsJobConfig>(
+            configurationRoot.GetSection(nameof(TopNewsJobConfig)));
 
-        services.AddHostedService<Worker1>();     
-        services.AddHostedService<Worker2>();
+        services.AddHostedService<TopNewsJob>();
     })
     .Build();
 
