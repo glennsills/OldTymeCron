@@ -1,14 +1,17 @@
 <Project Sdk="Microsoft.NET.Sdk.Worker">
-
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>dotnet-OldTymeCron-394529b1-e6b8-4747-9afd-e773f3ad4125</UserSecretsId>
   </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="cronos" Version="0.7.1" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+    <PackageReference Include="NSwag.ApiDescription.Client" Version="13.0.5" />
+  </ItemGroup>
+  <ItemGroup>
+    <OpenApiReference Include="TopNews.json" SourceUrl="https://localhost:5001/swagger/v1/swagger.json" />
   </ItemGroup>
 </Project>
