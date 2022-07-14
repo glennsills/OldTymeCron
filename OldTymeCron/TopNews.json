@@ -41,14 +41,6 @@
             }
           },
           {
-            "name": "Author",
-            "in": "query",
-            "schema": {
-              "maxLength": 128,
-              "type": "string"
-            }
-          },
-          {
             "name": "Text",
             "in": "query",
             "schema": {
@@ -60,14 +52,6 @@
             "name": "PublicationDate",
             "in": "query",
             "required": true,
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
-          },
-          {
-            "name": "CreatedDate",
-            "in": "query",
             "schema": {
               "type": "string",
               "format": "date-time"

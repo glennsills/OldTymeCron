@@ -9,5 +9,11 @@ public partial class Story
     public long Time { get; set; }
     public string Title { get; set; } = string.Empty;
     public string Type { get; set; } = string.Empty;
-    public Uri? Url { get; set; }
+    public string Text {get;set;} = string.Empty;
+    public string Url { get; set; } = string.Empty;
+
+    public static Story Default()
+    {
+        return new Story();
+    }
 }

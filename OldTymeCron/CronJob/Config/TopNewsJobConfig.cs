@@ -8,8 +8,9 @@ namespace OldTymeCron.CronJob.Config;
 /// </summary>
 public class TopNewsJobConfig : BaseWorkerConfig
 {
-    public string HackerNewsBaseUri {get;set;} = string.Empty;
+    public string HackerNewsBaseUrl {get;set;} = string.Empty;
     public string TopNewsPath {get;set;} = string.Empty;
     public string TopNewsItemPath {get;set;}  = string.Empty;
-    public string TopNewsBaseUri { get; set; } = string.Empty;
+    public string TopNewsBaseUrl { get; set; } = string.Empty;
+    public string? HackerNewsTopStoryPath { get; internal set; }
 }
