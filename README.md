@@ -3,6 +3,8 @@ I started working on this project for fun. There was a discussion at work as to 
 
 ## Yeah But What About Scheduling Tasks in the Cloud?
 I figure I'll create a Kubernetes cluster that will run under Docker for Windows. I'll do this in the Kubernetes branch. I'm not sure how far I want to take this yet. I can make the cron app a reduntant service to make it more reliable, but that would make it a bit more complicated. TBD. Anyway, this solution will be in the _kubernetes_ branch.
+### Fun Side Trip
+I decided to try out dotnet-openapi to create the client proxy to the TopNews API. *Add more detail here later*.
 
 ## Yeah But What About Monitoring?
 I am pretty sure that I am going to be able to handle this with some out of the box logging that sinks to a cloud based log store like Elastic and then build a dashboard. My priority here is simplicity and I want to get a free container from hub.docker.com - because I am cheap. I'll call this branch _monitoring_. It will be based on the _kubernetes_ branch.
