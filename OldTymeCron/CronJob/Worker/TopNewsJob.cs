@@ -32,8 +32,16 @@ public class TopNewsJob : BaseCronWorker
     private async Task RecordTopStory(HackerNewsStory topStory)
     {
         var topNewsClient = new TopNewsHttpClient(_configuration.TopNewsBaseUrl, new HttpClient());
-        await topNewsClient.AddAsync(null, topStory.Title,
-        topStory.Text, DateTimeOffset.FromUnixTimeMilliseconds(topStory.Time));
+        TopNewsItem item = new TopNewsItem
+        {
+            HackerNewsId = topStory.Id,
+            Title = topStory.Title,
+            Author = topStory.By,
+            Text = topStory.Text,
+            Url = topStory.Url,
+            PublicationDate = DateTimeOffset.FromUnixTimeMilliseconds(topStory.Time)
+        };
+        await topNewsClient.AddAsync(item);
     }
 
     private async Task<HackerNewsStory> GetTopStory()

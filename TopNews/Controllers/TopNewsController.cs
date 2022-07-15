@@ -22,13 +22,13 @@ namespace TopNews.Controllers
         }
 
         [HttpPost("add")]
-        public async Task<IActionResult> AddTopNewsItem(TopNewsItem item)
+        public async Task<IActionResult> AddTopNewsItem([FromBody]TopNewsItem item)
         {
             _dbContext.TopNewsItem.Add(item);
             var rowCount = await _dbContext.SaveChangesAsync();
             if (rowCount > 0)
             {
-                return CreatedAtAction(nameof(GetTopNewsItem), new {Id=item.Id});
+                return Ok(new {Id=item.Id});
             }
             return BadRequest();
         }
