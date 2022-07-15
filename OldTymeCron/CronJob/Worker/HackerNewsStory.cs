@@ -1,5 +1,5 @@
 namespace OldTymeCron.CronJob.Worker;
-public partial class Story
+public partial class HackerNewsStory
 {
     public string By { get; set; } = string.Empty;
     public long Descendants { get; set; }
@@ -12,8 +12,8 @@ public partial class Story
     public string Text {get;set;} = string.Empty;
     public string Url { get; set; } = string.Empty;
 
-    public static Story Default()
+    public static HackerNewsStory Empty()
     {
-        return new Story();
+        return new HackerNewsStory();
     }
 }

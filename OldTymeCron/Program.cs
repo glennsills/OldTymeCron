@@ -9,9 +9,6 @@ IHost host = Host.CreateDefaultBuilder(args)
         services.Configure<TopNewsJobConfig>(
             configurationRoot.GetSection(nameof(TopNewsJobConfig)));
 
-        services.Configure<TopNewsJobConfig>(
-            configurationRoot.GetSection(nameof(TopNewsJobConfig)));
-
         services.AddHostedService<TopNewsJob>();
     })
     .Build();

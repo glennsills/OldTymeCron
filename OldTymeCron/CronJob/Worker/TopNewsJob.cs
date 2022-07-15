@@ -20,7 +20,7 @@ public class TopNewsJob : BaseCronWorker
 
     protected override async Task<bool> DoWork(CancellationToken stoppingToken)
     {
-        Story topStory = await GetTopStory();
+        HackerNewsStory topStory = await GetTopStory();
         if (topStory.Id > 0)
         {
             await RecordTopStory(topStory);
@@ -29,14 +29,14 @@ public class TopNewsJob : BaseCronWorker
         return false;
     }
 
-    private async Task RecordTopStory(Story topStory)
+    private async Task RecordTopStory(HackerNewsStory topStory)
     {
         var topNewsClient = new TopNewsHttpClient(_configuration.TopNewsBaseUrl, new HttpClient());
         await topNewsClient.AddAsync(null, topStory.Title,
         topStory.Text, DateTimeOffset.FromUnixTimeMilliseconds(topStory.Time));
     }
 
-    private async Task<Story> GetTopStory()
+    private async Task<HackerNewsStory> GetTopStory()
     {
         HttpClient hackerNewsClient = new HttpClient();
         hackerNewsClient.BaseAddress = new Uri(_configuration.HackerNewsBaseUrl);
@@ -45,23 +45,23 @@ public class TopNewsJob : BaseCronWorker
         {
             return await GetTopStory(id, hackerNewsClient);
         }
-        return Story.Default();
+        return HackerNewsStory.Empty();
     }
 
-    private async Task<Story> GetTopStory(long id, HttpClient hackerNewsClient)
+    private async Task<HackerNewsStory> GetTopStory(long id, HttpClient hackerNewsClient)
     {
-        var story = await hackerNewsClient.GetFromJsonAsync<Story>($"item/{id}.json");
+        var story = await hackerNewsClient.GetFromJsonAsync<HackerNewsStory>($"item/{id}.json");
         if (story != null)
         {
             return story;
         }
-        return Story.Default();
+        return HackerNewsStory.Empty();
     }
 
     private async Task<long> GetTopStoryId(HttpClient hackerNewsClient)
     {
-        var storyList = await hackerNewsClient.GetFromJsonAsync<TopStoryList>(_configuration.HackerNewsTopStoryPath);
-        return storyList?.ItemIds[0]??-1;
+        var storyList = await hackerNewsClient.GetFromJsonAsync<long[]>(_configuration.HackerNewsTopStoryPath);
+        return storyList?[0]??-1;
     }
 }
 
